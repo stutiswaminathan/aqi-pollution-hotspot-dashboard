@@ -1,0 +1,14 @@
+body {
+    font-family: 'Manrope', sans-serif;
+    background: radial-gradient(circle at 50% 0%, #0d1b2a 0%, #050b14 100%);
+    padding: 24px;
+    color: #f8fafc;
+}
+.mono { font-family: 'Space Mono', monospace; }
+
+.glass-panel {
+    background: rgba(13,22,35,0.4);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+}
