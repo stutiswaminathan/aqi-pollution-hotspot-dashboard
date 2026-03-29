@@ -15,8 +15,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        html, body {
+            overflow-y: auto !important;
+            height: auto !important;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
-<body class="p-4">
+<body class="p-4 bg-[#050914] text-white custom-scrollbar relative">
 
     <header class="flex justify-between items-center mb-4 border-b border-white/10 pb-3">
         <div class="flex items-center gap-4">
@@ -31,10 +40,9 @@
         </div>
     </header>
 
-    <main class="grid grid-cols-12 gap-5 h-[calc(100vh-85px)]">
+    <main class="grid grid-cols-12 gap-5 h-[calc(100vh-85px)] mb-12">
         
         <div class="col-span-3 flex flex-col gap-4 h-full overflow-y-auto custom-scrollbar pr-1 pb-4">
-            
             <div class="glass-panel p-4 flex-shrink-0">
                 <h3 class="text-xs mono font-bold text-slate-400 mb-3 uppercase tracking-widest">Baseline Locales</h3>
                 <div class="space-y-3">
@@ -90,8 +98,7 @@
 
             <div class="glass-panel p-4 flex-shrink-0">
                 <h3 class="text-xs mono font-bold text-slate-400 mb-4 uppercase tracking-widest">5-Day Simulation</h3>
-                <div id="forecast-boxes" class="flex justify-between gap-2">
-                </div>
+                <div id="forecast-boxes" class="flex justify-between gap-2"></div>
             </div>
 
             <div class="glass-panel p-4 flex-shrink-0">
@@ -102,10 +109,8 @@
                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-500" id="policy-dot"></span>
                     </span>
                 </h3>
-                <ul id="policy-list" class="space-y-2.5 mt-3">
-                </ul>
+                <ul id="policy-list" class="space-y-2.5 mt-3"></ul>
             </div>
-
         </div>
 
         <div class="col-span-6 flex flex-col gap-4 h-full">
@@ -126,7 +131,14 @@
                     Report Downloaded ✓
                 </div>
 
-                <div class="absolute bottom-4 left-0 w-full px-6">
+                <button onclick="document.getElementById('game-section').scrollIntoView({behavior: 'smooth'})" class="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-50 glass-panel px-6 py-2.5 text-center border-cyan-500/80 bg-[#0a1120]/95 hover:bg-cyan-900/40 transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(6,182,212,0.5)] rounded-full animate-bounce">
+                    <div class="flex items-center justify-center gap-2">
+                        <h4 class="text-xs mono font-black uppercase tracking-widest text-cyan-400 drop-shadow">Scroll Down to Play Clean Air Run</h4>
+                        <span class="text-lg text-cyan-400">↓</span>
+                    </div>
+                </button>
+
+                <div class="absolute bottom-4 left-0 w-full px-6 pointer-events-none">
                     <svg id="ekg-svg" viewBox="0 0 800 100" preserveAspectRatio="none" class="h-16 w-full opacity-80">
                         <path class="ekg-line" d="M0,50 L800,50" />
                     </svg>
@@ -135,7 +147,6 @@
         </div>
 
         <div class="col-span-3 flex flex-col gap-4 h-full overflow-y-auto custom-scrollbar pr-1 pb-4">
-            
             <div class="glass-panel p-4 flex justify-between items-center flex-shrink-0">
                 <div>
                     <p class="text-[10px] mono font-bold text-slate-400 mb-1.5 uppercase tracking-widest">Select Node</p>
@@ -152,7 +163,7 @@
             </div>
 
             <div class="glass-panel p-2 h-40 relative flex-shrink-0">
-                <div id="hazard-map"></div>
+                <div id="hazard-map" class="w-full h-full rounded"></div>
                 <div class="absolute bottom-3 left-3 z-[400] flex gap-2">
                     <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></div>
                     <div class="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_#f59e0b]"></div>
@@ -215,14 +226,148 @@
                 <p id="alert-desc" class="text-xs text-slate-300 mt-1 font-medium leading-relaxed">Conditions are optimal for all outdoor activities.</p>
             </div>
 
-            <div class="glass-panel p-4 flex-shrink-0">
+            <div class="glass-panel p-4 flex-shrink-0 mb-4">
                 <h3 class="text-xs mono font-bold text-slate-400 mb-3 uppercase tracking-widest">Active Protocols</h3>
-                <ul id="precautions-list" class="space-y-3 text-xs text-slate-200 font-medium">
-                </ul>
+                <ul id="precautions-list" class="space-y-3 text-xs text-slate-200 font-medium"></ul>
             </div>
         </div>
     </main>
 
+    <section id="game-section" class="max-w-6xl mx-auto" style="
+      margin-top: 40px;
+      padding: 0 16px 40px;
+      scroll-margin-top: 20px;
+    ">
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding-top: 24px;
+        margin-bottom: 16px;
+      ">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="
+            height: 32px; width: 4px;
+            background: var(--current-accent, #00ff9d);
+            box-shadow: 0 0 12px var(--current-accent, #00ff9d);
+            border-radius: 2px;
+          "></div>
+          <div>
+            <h2 style="
+              font-family: 'Manrope', sans-serif;
+              font-size: 18px;
+              font-weight: 800;
+              color: #fff;
+              letter-spacing: -0.5px;
+              text-transform: uppercase;
+              margin: 0;
+            ">
+              CLEAN AIR RUN
+              <span style="
+                font-family: 'Space Mono', monospace;
+                font-size: 10px;
+                color: #64748b;
+                font-weight: 400;
+                letter-spacing: 3px;
+                margin-left: 10px;
+              ">Pollution Dodge</span>
+            </h2>
+            <p style="
+              font-family: 'Space Mono', monospace;
+              font-size: 10px;
+              color: #475569;
+              margin: 4px 0 0;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+            ">
+              Dodge smog &bull; Collect O₂ &bull; Double-jump &bull; Survive the AQI
+            </p>
+          </div>
+        </div>
+
+        <div id="game-hint-badge" style="
+          font-family: 'Space Mono', monospace;
+          font-size: 9px;
+          color: rgba(0,255,157,0.7);
+          border: 1px solid rgba(0,255,157,0.25);
+          border-radius: 4px;
+          padding: 5px 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          background: rgba(0,255,157,0.05);
+        ">▼ Scroll to play</div>
+      </div>
+
+      <div style="
+        position: relative;
+        width: 100%;
+        height: 320px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: #050d1a;
+        box-shadow:
+          0 0 0 1px rgba(0,255,157,0.05),
+          0 20px 60px rgba(0,0,0,0.5),
+          inset 0 1px 0 rgba(255,255,255,0.05);
+      ">
+        <div style="
+          position: absolute; inset: 0; z-index: 10;
+          pointer-events: none;
+          background: repeating-linear-gradient(
+            0deg,
+            rgba(0,0,0,0.08) 0px,
+            rgba(0,0,0,0.08) 1px,
+            transparent 1px,
+            transparent 3px
+          );
+        "></div>
+
+        <div style="position:absolute;top:10px;left:10px;width:16px;height:16px;
+          border-top:2px solid rgba(0,255,157,0.4);border-left:2px solid rgba(0,255,157,0.4);
+          border-radius:2px 0 0 0; z-index:11; pointer-events:none;"></div>
+        <div style="position:absolute;top:10px;right:10px;width:16px;height:16px;
+          border-top:2px solid rgba(0,255,157,0.4);border-right:2px solid rgba(0,255,157,0.4);
+          border-radius:0 2px 0 0; z-index:11; pointer-events:none;"></div>
+        <div style="position:absolute;bottom:10px;left:10px;width:16px;height:16px;
+          border-bottom:2px solid rgba(0,255,157,0.4);border-left:2px solid rgba(0,255,157,0.4);
+          border-radius:0 0 0 2px; z-index:11; pointer-events:none;"></div>
+        <div style="position:absolute;bottom:10px;right:10px;width:16px;height:16px;
+          border-bottom:2px solid rgba(0,255,157,0.4);border-right:2px solid rgba(0,255,157,0.4);
+          border-radius:0 0 2px 0; z-index:11; pointer-events:none;"></div>
+
+        <canvas id="gameCanvas" style="
+          display: block;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        "></canvas>
+      </div>
+
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        margin-top: 12px;
+        font-family: 'Space Mono', monospace;
+        font-size: 10px;
+        color: #475569;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      ">
+        <span>⌨ Space / ↑ — Jump</span>
+        <span style="color:rgba(255,255,255,0.12)">|</span>
+        <span>📱 Tap canvas — Jump</span>
+        <span style="color:rgba(255,255,255,0.12)">|</span>
+        <span>Double-jump allowed</span>
+        <span style="color:rgba(255,255,255,0.12)">|</span>
+        <span style="color: rgba(0,255,157,0.6);">🫁 Collect O₂ for +50pts</span>
+      </div>
+    </section>
+
     <script src="main.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
