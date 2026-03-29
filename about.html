@@ -3,198 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Breathe Safe</title>
+    <title>ABOUT | BREATHE SAFE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --bg-dark: #0b0e14;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border-glow: rgba(255, 255, 255, 0.1);
-            --neon-green: #00ff9d;
-            --neon-orange: #ff9f43;
-            --neon-red: #ff4d4d;
-            --text-main: #e0e0e0;
-            --text-dim: #888;
+            --current-accent: #10b981;
+            --panel-bg: rgba(255, 255, 255, 0.03);
+            --border-white: rgba(255, 255, 255, 0.1);
         }
 
         body {
             background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 40px;
-            display: flex;
-            justify-content: center;
+            color: #e2e8f0;
+            font-family: 'Manrope', sans-serif;
+            scroll-behavior: smooth;
         }
 
-        .about-container {
-            max-width: 1100px;
-            width: 100%;
+        .mono { font-family: 'Space Mono', monospace; }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-white);
+            backdrop-filter: blur(12px);
+            border-radius: 4px;
         }
 
-        header {
-            border-left: 4px solid var(--neon-green);
-            padding-left: 20px;
-            margin-bottom: 40px;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
 
-        h1 {
-            font-size: 1.8rem;
-            letter-spacing: 3px;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        .subtitle {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        h2 {
-            font-size: 1rem;
-            color: var(--text-dim);
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        p {
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-        .legend-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .dot {
-            height: 12px;
-            width: 12px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
-
-        .dot.green { background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
-        .dot.orange { background: var(--neon-orange); box-shadow: 0 0 10px var(--neon-orange); }
-        .dot.red { background: var(--neon-red); box-shadow: 0 0 10px var(--neon-red); }
-
-        .aqi-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
+        /* AQI Row Colors */
+        .row-good { color: #10b981; }
+        .row-moderate { color: #f59e0b; }
+        .row-sensitive { color: #fb923c; }
+        .row-unhealthy { color: #ef4444; }
+        .row-very-unhealthy { color: #a855f7; }
+        .row-hazardous { color: #7f1d1d; }
 
         .aqi-table th {
-            text-align: left;
-            color: var(--text-dim);
-            border-bottom: 1px solid var(--border-glow);
-            padding-bottom: 10px;
-            font-weight: 400;
+            border-bottom: 1px solid var(--border-white);
+            padding: 12px;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .aqi-table td {
-            padding: 15px 0;
+            padding: 16px 12px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .val-green { color: var(--neon-green); font-weight: bold; }
-        .val-orange { color: var(--neon-orange); font-weight: bold; }
-        .val-red { color: var(--neon-red); font-weight: bold; }
-
-        @media (max-width: 850px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
+            font-size: 13px;
         }
     </style>
 </head>
-<body>
+<body class="p-4 md:p-8">
 
-<div class="about-container">
-    <header>
-        <h1>Breathe Safe <span style="color: var(--neon-green);">//</span> Biometric Audit</h1>
-        <p class="subtitle">Urban Microclimate Anomaly Detection & Monitoring</p>
+    <header class="flex justify-between items-center mb-8 border-b border-white/10 pb-3 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4">
+            <div class="h-8 w-1 bg-emerald-500 shadow-[0_0_10px_#10b981]"></div>
+            <div>
+                <h1 class="text-xl font-extrabold text-white uppercase tracking-tight"> 
+                    BREATHE SAFE <span class="text-slate-500 font-medium text-xs ml-2 tracking-widest uppercase">System Intelligence</span>
+                </h1>
+            </div>
+        </div>
+        <div class="text-right">
+            <a href="index.html" class="text-xs mono font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-widest">← Back to Feed</a>
+        </div>
     </header>
 
-    <div class="content-grid">
-        <div class="card">
-            <h2>System_Logic</h2>
-            <p>The Breathe Safe dashboard serves as a high-precision interface for tracking localized air quality. Unlike general regional reports, our system focuses on <strong>Hotspot Detection</strong>—identifying specific urban zones where pollution levels spike due to microclimate anomalies.</p>
-            
-            <h2>Status_Legend</h2>
-            <ul class="legend-list">
-                <li class="legend-item"><span class="dot green"></span> 0 - 50: OPTIMAL</li>
-                <li class="legend-item"><span class="dot orange"></span> 51 - 150: ELEVATED</li>
-                <li class="legend-item"><span class="dot red"></span> 151+: CRITICAL</li>
-            </ul>
+    <main class="max-w-7xl mx-auto grid grid-cols-12 gap-6">
+        
+        <div class="col-span-12 lg:col-span-4 flex flex-col gap-5">
+            <div class="glass-panel p-6">
+                <h3 class="text-xs mono font-bold text-emerald-500 mb-4 uppercase tracking-widest">What is AQI?</h3>
+                <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    The Air Quality Index (AQI) is a standardized system used to communicate how clean or polluted the air is, and what associated health effects might be a concern. 
+                </p>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    It aggregates data from various pollutants—primarily <span class="text-white font-bold">$PM_{2.5}$</span>, <span class="text-white font-bold">$PM_{10}$</span>, and <span class="text-white font-bold">$NO_2$</span>—into a single numerical value that scales from 0 to 500.
+                </p>
+            </div>
 
-            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 30px;">
-                *Measurements are aggregated from multi-modal sensor feeds including PM2.5, PM10, and NO₂ concentrations.
-            </p>
+            <div class="glass-panel p-6">
+                <h3 class="text-xs mono font-bold text-emerald-500 mb-4 uppercase tracking-widest">Our Project Aims</h3>
+                <ul class="space-y-4 text-sm text-slate-300">
+                    <li class="flex gap-3">
+                        <span class="text-emerald-500 font-bold">01/</span>
+                        <span>Identify urban microclimate anomalies where pollution significantly exceeds baseline city averages.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="text-emerald-500 font-bold">02/</span>
+                        <span>Provide real-time biometric risk assessments to help users minimize personal particulate intake.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="text-emerald-500 font-bold">03/</span>
+                        <span>Visualize complex atmospheric data through an accessible, high-fidelity interface for immediate awareness.</span>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>AQI_Reference_Metrics</h2>
-            <table class="aqi-table">
-                <thead>
-                    <tr>
-                        <th>RANGE</th>
-                        <th>STATUS</th>
-                        <th>IMPLICATION</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="val-green">0 - 50</td>
-                        <td>Optimal</td>
-                        <td>Satisfactory air quality; minimal respiratory risk.</td>
-                    </tr>
-                    <tr>
-                        <td class="val-orange">51 - 100</td>
-                        <td>Moderate</td>
-                        <td>Acceptable; sensitive individuals should monitor status.</td>
-                    </tr>
-                    <tr>
-                        <td class="val-orange" style="opacity: 0.8;">101 - 150</td>
-                        <td>Unhealthy</td>
-                        <td>Increased risk for children and elderly residents.</td>
-                    </tr>
-                    <tr>
-                        <td class="val-red">151 - 200</td>
-                        <td>Hazardous</td>
-                        <td>High pollution levels; localized hotspots detected.</td>
-                    </tr>
-                    <tr>
-                        <td class="val-red" style="filter: brightness(1.2);">200+</td>
-                        <td>Severe</td>
-                        <td>Emergency conditions; significant respiratory risk.</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-span-12 lg:col-span-8">
+            <div class="glass-panel overflow-hidden">
+                <div class="p-4 border-b border-white/10 bg-white/5">
+                    <h3 class="text-xs mono font-bold text-slate-300 uppercase tracking-widest">Reference: Air Quality Scale</h3>
+                </div>
+                
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full aqi-table text-left border-collapse">
+                        <thead>
+                            <tr class="mono text-slate-500">
+                                <th>AQI RANGE</th>
+                                <th>HEALTH IMPLICATIONS</th>
+                                <th>CAUTIONARY STATEMENT</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-200">
+                            <tr>
+                                <td class="row-good font-extrabold mono">0 - 50<br><span class="text-[10px] uppercase">Good</span></td>
+                                <td>Air quality is considered satisfactory, and air pollution poses little or no risk.</td>
+                                <td class="text-slate-500 italic text-xs">None</td>
+                            </tr>
+                            <tr>
+                                <td class="row-moderate font-extrabold mono">51 - 100<br><span class="text-[10px] uppercase">Moderate</span></td>
+                                <td>Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive.</td>
+                                <td>Active children and adults, and people with respiratory disease (asthma), should limit prolonged outdoor exertion.</td>
+                            </tr>
+                            <tr>
+                                <td class="row-sensitive font-extrabold mono">101 - 150<br><span class="text-[10px] uppercase">Sensitive</span></td>
+                                <td>Members of sensitive groups may experience health effects. The general public is not likely to be affected.</td>
+                                <td>Active children and adults, and people with respiratory disease, should limit prolonged outdoor exertion.</td>
+                            </tr>
+                            <tr>
+                                <td class="row-unhealthy font-extrabold mono">151 - 200<br><span class="text-[10px] uppercase">Unhealthy</span></td>
+                                <td>Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</td>
+                                <td>Sensitive groups should avoid exertion; everyone else, especially children, should limit prolonged outdoor exertion.</td>
+                            </tr>
+                            <tr>
+                                <td class="row-very-unhealthy font-extrabold mono">201 - 300<br><span class="text-[10px] uppercase">Very Unhealthy</span></td>
+                                <td>Health warnings of emergency conditions. The entire population is more likely to be affected.</td>
+                                <td>Sensitive groups should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.</td>
+                            </tr>
+                            <tr>
+                                <td class="row-hazardous font-extrabold mono">300+<br><span class="text-[10px] uppercase">Hazardous</span></td>
+                                <td>Health alert: everyone may experience more serious health effects.</td>
+                                <td class="font-bold">Everyone should avoid all outdoor exertion.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    </main>
+
+    <footer class="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/5 flex justify-between items-center opacity-40">
+        <p class="text-[10px] mono text-slate-400 uppercase tracking-widest font-bold">Build v2.0.6 // Hotspot Detection System</p>
+        <div class="flex gap-4">
+             <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+             <div class="w-2 h-2 rounded-full bg-amber-500"></div>
+             <div class="w-2 h-2 rounded-full bg-red-500"></div>
+        </div>
+    </footer>
 
 </body>
 </html>
