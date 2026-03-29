@@ -13,7 +13,6 @@
     <style>
         :root {
             --bg-dark: #0b0e14;
-            --current-accent: #10b981;
             --panel-bg: rgba(255, 255, 255, 0.03);
             --border-white: rgba(255, 255, 255, 0.1);
         }
@@ -22,7 +21,6 @@
             background-color: var(--bg-dark);
             color: #e2e8f0;
             font-family: 'Manrope', sans-serif;
-            scroll-behavior: smooth;
         }
 
         .mono { font-family: 'Space Mono', monospace; }
@@ -38,7 +36,7 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
 
-        /* AQI Row Colors */
+        /* AQI Range Colors */
         .row-good { color: #10b981; }
         .row-moderate { color: #f59e0b; }
         .row-sensitive { color: #fb923c; }
@@ -83,10 +81,10 @@
             <div class="glass-panel p-6">
                 <h3 class="text-xs mono font-bold text-emerald-500 mb-4 uppercase tracking-widest">What is AQI?</h3>
                 <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                    The Air Quality Index (AQI) is a standardized system used to communicate how clean or polluted the air is, and what associated health effects might be a concern. 
+                    The Air Quality Index (AQI) is a comprehensive system used by environmental agencies to translate complex chemical data into a single, understandable safety score.
                 </p>
                 <p class="text-sm text-slate-300 leading-relaxed">
-                    It aggregates data from various pollutants—primarily <span class="text-white font-bold">$PM_{2.5}$</span>, <span class="text-white font-bold">$PM_{10}$</span>, and <span class="text-white font-bold">$NO_2$</span>—into a single numerical value that scales from 0 to 500.
+                    Our dashboard calculates this index by evaluating ground-level concentrations of PM<sub>2.5</sub>, PM<sub>10</sub>, and NO<sub>2</sub> emissions across selected urban nodes.
                 </p>
             </div>
 
@@ -95,15 +93,15 @@
                 <ul class="space-y-4 text-sm text-slate-300">
                     <li class="flex gap-3">
                         <span class="text-emerald-500 font-bold">01/</span>
-                        <span>Identify urban microclimate anomalies where pollution significantly exceeds baseline city averages.</span>
+                        <span>Isolate and map micro-scale pollution hotspots that often go undetected by generalized regional sensors.</span>
                     </li>
                     <li class="flex gap-3">
                         <span class="text-emerald-500 font-bold">02/</span>
-                        <span>Provide real-time biometric risk assessments to help users minimize personal particulate intake.</span>
+                        <span>Empower urban residents with precise biometric feedback to mitigate long-term respiratory exposure.</span>
                     </li>
                     <li class="flex gap-3">
                         <span class="text-emerald-500 font-bold">03/</span>
-                        <span>Visualize complex atmospheric data through an accessible, high-fidelity interface for immediate awareness.</span>
+                        <span>Standardize environmental data visualization through a responsive, high-fidelity monitoring interface.</span>
                     </li>
                 </ul>
             </div>
@@ -120,40 +118,40 @@
                         <thead>
                             <tr class="mono text-slate-500">
                                 <th>AQI RANGE</th>
-                                <th>HEALTH IMPLICATIONS</th>
-                                <th>CAUTIONARY STATEMENT</th>
+                                <th>BIOLOGICAL IMPACT</th>
+                                <th>SAFETY PROTOCOL</th>
                             </tr>
                         </thead>
                         <tbody class="text-slate-200">
                             <tr>
-                                <td class="row-good font-extrabold mono">0 - 50<br><span class="text-[10px] uppercase">Good</span></td>
-                                <td>Air quality is considered satisfactory, and air pollution poses little or no risk.</td>
-                                <td class="text-slate-500 italic text-xs">None</td>
+                                <td class="row-good font-extrabold mono">0 - 50<br><span class="text-[10px] uppercase">Stable</span></td>
+                                <td>Atmospheric purity is high. Baseline data suggests negligible physiological impact on standard respiratory functions.</td>
+                                <td class="text-slate-500 italic text-xs">Unrestricted outdoor activity.</td>
                             </tr>
                             <tr>
-                                <td class="row-moderate font-extrabold mono">51 - 100<br><span class="text-[10px] uppercase">Moderate</span></td>
-                                <td>Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive.</td>
-                                <td>Active children and adults, and people with respiratory disease (asthma), should limit prolonged outdoor exertion.</td>
+                                <td class="row-moderate font-extrabold mono">51 - 100<br><span class="text-[10px] uppercase">Acceptable</span></td>
+                                <td>Pollutant levels are manageable; however, individuals with hypersensitivity may notice early-onset irritation.</td>
+                                <td>Sensitive groups should evaluate exertion levels during prolonged exposure periods.</td>
                             </tr>
                             <tr>
-                                <td class="row-sensitive font-extrabold mono">101 - 150<br><span class="text-[10px] uppercase">Sensitive</span></td>
-                                <td>Members of sensitive groups may experience health effects. The general public is not likely to be affected.</td>
-                                <td>Active children and adults, and people with respiratory disease, should limit prolonged outdoor exertion.</td>
+                                <td class="row-sensitive font-extrabold mono">101 - 150<br><span class="text-[10px] uppercase">Cautionary</span></td>
+                                <td>Elevated concentrations likely to affect vulnerable demographics. Minimal threat to the general public.</td>
+                                <td>Children and elderly inhabitants should minimize intensive physical exertion in outdoor environments.</td>
                             </tr>
                             <tr>
                                 <td class="row-unhealthy font-extrabold mono">151 - 200<br><span class="text-[10px] uppercase">Unhealthy</span></td>
-                                <td>Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</td>
-                                <td>Sensitive groups should avoid exertion; everyone else, especially children, should limit prolonged outdoor exertion.</td>
+                                <td>Observable respiratory aggravation across wider populations. Significant stress for those with pre-existing conditions.</td>
+                                <td>Restrict prolonged outdoor exposure. Implement the use of high-grade protective filtration (N95+).</td>
                             </tr>
                             <tr>
-                                <td class="row-very-unhealthy font-extrabold mono">201 - 300<br><span class="text-[10px] uppercase">Very Unhealthy</span></td>
-                                <td>Health warnings of emergency conditions. The entire population is more likely to be affected.</td>
-                                <td>Sensitive groups should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.</td>
+                                <td class="row-very-unhealthy font-extrabold mono">201 - 300<br><span class="text-[10px] uppercase">Severe</span></td>
+                                <td>Systemic health risks detected. High probability of acute respiratory incidents across all age groups.</td>
+                                <td>Strict avoidance of all outdoor exertion. Transition to sealed environments with mechanical air purification.</td>
                             </tr>
                             <tr>
                                 <td class="row-hazardous font-extrabold mono">300+<br><span class="text-[10px] uppercase">Hazardous</span></td>
-                                <td>Health alert: everyone may experience more serious health effects.</td>
-                                <td class="font-bold">Everyone should avoid all outdoor exertion.</td>
+                                <td>Emergency toxicological status. Immediate risk of permanent pulmonary damage for all urban inhabitants.</td>
+                                <td class="font-bold">Cease all outdoor activity. Full deployment of indoor air scrubbers and emergency safety measures.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -165,7 +163,7 @@
     <footer class="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/5 flex justify-between items-center opacity-40">
         <p class="text-[10px] mono text-slate-400 uppercase tracking-widest font-bold">Build v2.0.6 // Hotspot Detection System</p>
         <div class="flex gap-4">
-             <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+             <div class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_5px_#10b981]"></div>
              <div class="w-2 h-2 rounded-full bg-amber-500"></div>
              <div class="w-2 h-2 rounded-full bg-red-500"></div>
         </div>
