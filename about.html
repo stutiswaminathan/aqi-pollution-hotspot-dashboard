@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Breathe Safe</title>
+    <style>
+        :root {
+            --bg-dark: #0b0e14;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-glow: rgba(255, 255, 255, 0.1);
+            --neon-green: #00ff9d;
+            --neon-orange: #ff9f43;
+            --neon-red: #ff4d4d;
+            --text-main: #e0e0e0;
+            --text-dim: #888;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        header {
+            border-left: 4px solid var(--neon-green);
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            font-size: 1rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .legend-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .dot.green { background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
+        .dot.orange { background: var(--neon-orange); box-shadow: 0 0 10px var(--neon-orange); }
+        .dot.red { background: var(--neon-red); box-shadow: 0 0 10px var(--neon-red); }
+
+        .aqi-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .aqi-table th {
+            text-align: left;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border-glow);
+            padding-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .aqi-table td {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .val-green { color: var(--neon-green); font-weight: bold; }
+        .val-orange { color: var(--neon-orange); font-weight: bold; }
+        .val-red { color: var(--neon-red); font-weight: bold; }
+
+        @media (max-width: 850px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="about-container">
+    <header>
+        <h1>Breathe Safe <span style="color: var(--neon-green);">//</span> Biometric Audit</h1>
+        <p class="subtitle">Urban Microclimate Anomaly Detection & Monitoring</p>
+    </header>
+
+    <div class="content-grid">
+        <div class="card">
+            <h2>System_Logic</h2>
+            <p>The Breathe Safe dashboard serves as a high-precision interface for tracking localized air quality. Unlike general regional reports, our system focuses on <strong>Hotspot Detection</strong>—identifying specific urban zones where pollution levels spike due to microclimate anomalies.</p>
+            
+            <h2>Status_Legend</h2>
+            <ul class="legend-list">
+                <li class="legend-item"><span class="dot green"></span> 0 - 50: OPTIMAL</li>
+                <li class="legend-item"><span class="dot orange"></span> 51 - 150: ELEVATED</li>
+                <li class="legend-item"><span class="dot red"></span> 151+: CRITICAL</li>
+            </ul>
+
+            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 30px;">
+                *Measurements are aggregated from multi-modal sensor feeds including PM2.5, PM10, and NO₂ concentrations.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>AQI_Reference_Metrics</h2>
+            <table class="aqi-table">
+                <thead>
+                    <tr>
+                        <th>RANGE</th>
+                        <th>STATUS</th>
+                        <th>IMPLICATION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="val-green">0 - 50</td>
+                        <td>Optimal</td>
+                        <td>Satisfactory air quality; minimal respiratory risk.</td>
+                    </tr>
+                    <tr>
+                        <td class="val-orange">51 - 100</td>
+                        <td>Moderate</td>
+                        <td>Acceptable; sensitive individuals should monitor status.</td>
+                    </tr>
+                    <tr>
+                        <td class="val-orange" style="opacity: 0.8;">101 - 150</td>
+                        <td>Unhealthy</td>
+                        <td>Increased risk for children and elderly residents.</td>
+                    </tr>
+                    <tr>
+                        <td class="val-red">151 - 200</td>
+                        <td>Hazardous</td>
+                        <td>High pollution levels; localized hotspots detected.</td>
+                    </tr>
+                    <tr>
+                        <td class="val-red" style="filter: brightness(1.2);">200+</td>
+                        <td>Severe</td>
+                        <td>Emergency conditions; significant respiratory risk.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
